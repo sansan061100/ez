@@ -1,0 +1,9 @@
+import * as tokens from '~~/server/lib/api/tokens';
+import { bindApiWithTokenUpdate, defineRoute } from '~~/server/lib/web/bind';
+import { apiV1Group } from '~~/server/lib/web/groups';
+
+export default defineRoute({
+    methods: ['POST'],
+    middlewares: apiV1Group,
+    handler: bindApiWithTokenUpdate(tokens.tokenRefreshHandler),
+});

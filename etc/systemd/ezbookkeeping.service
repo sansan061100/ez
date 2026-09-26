@@ -1,0 +1,19 @@
+[Unit]
+Description=ezBookkeeping is an open source, powerful, self-hosted personal finance app that is easy to use.
+After=syslog.target
+After=network.target
+After=mariadb.service mysqld.service postgresql.service
+
+[Service]
+Type=simple
+User=ezbookkeeping
+Group=ezbookkeeping
+WorkingDirectory=/usr/local/bin/ezbookkeeping
+ExecStart=/usr/bin/env node .output/server/index.mjs
+Environment=NODE_ENV=production
+Environment=EBK_CONF_PATH=conf/ezbookkeeping.ini
+Environment=PORT=8080
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
