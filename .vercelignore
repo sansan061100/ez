@@ -1,0 +1,9 @@
+# local runtime data, must never be uploaded
+/data/
+/log/
+/storage/
+# build outputs and dependencies are recreated by vercel
+/.output/
+/.nuxt/
+/.vercel/
+/node_modules/

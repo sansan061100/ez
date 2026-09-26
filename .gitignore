@@ -158,3 +158,6 @@ dist/
 /data/
 /storage/
 /log/
+
+# vercel
+/.vercel/

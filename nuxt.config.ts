@@ -211,6 +211,16 @@ export default defineNuxtConfig({
             assetsInlineLimit: 0
         }
     },
+    hooks: {
+        // the server reads conf/ezbookkeeping.ini from its working directory at runtime, so the config file
+        // must be shipped with the server output (e.g. the vercel function bundle). the hook is added here instead
+        // of in nitro.hooks, because nitro.hooks would replace the "compiled" hook of the nitro deployment preset
+        'nitro:init'(nitro) {
+            nitro.hooks.hook('compiled', () => {
+                fs.cpSync('./conf', `${nitro.options.output.serverDir}/conf`, { recursive: true });
+            });
+        }
+    },
     nitro: {
         replace: {
             __EZBOOKKEEPING_SERVER_BUILD_INFO__: JSON.stringify({
