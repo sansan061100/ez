@@ -66,6 +66,17 @@
                                     </v-btn>
                                 </router-link>
 
+                                <router-link to="/report"
+                                             :aria-current="isTopNavigationActive('/report') ? 'page' : undefined">
+                                    <v-btn class="top-navigation-button ms-1" density="comfortable" variant="text"
+                                           :aria-label="tt('Financial Report')" :icon="true"
+                                           :active="isTopNavigationActive('/report')"
+                                           :color="isTopNavigationActive('/report') ? 'primary' : 'default'">
+                                        <v-icon :icon="isTopNavigationActive('/report') ? mdiFileChart : mdiFileChartOutline" size="24" />
+                                        <v-tooltip activator="parent">{{ tt('Financial Report') }}</v-tooltip>
+                                    </v-btn>
+                                </router-link>
+
                                 <router-link to="/insights/explorer"
                                              :aria-current="isTopNavigationActive('/insights/explorer') ? 'page' : undefined">
                                     <v-btn class="top-navigation-button ms-1" density="comfortable" variant="text"
@@ -210,6 +221,8 @@ import {
     mdiCreditCardOutline,
     mdiChartPie,
     mdiChartPieOutline,
+    mdiFileChart,
+    mdiFileChartOutline,
     mdiCompass,
     mdiCompassOutline,
     mdiPlus,
