@@ -420,10 +420,9 @@ export function formatAmount(value: BigDecimal, options: NumberFormatOptions): s
     }
 
     if (decimalNumberCount === 0) {
+        // only hides the empty decimals, the non-zero decimals (e.g. "0.40") are kept as two digits
         if (decimals === numeralSystem.doubleDigitZero) {
             decimals = '';
-        } else if (decimals.charAt(1) === numeralSystem.digitZero) {
-            decimals = decimals.charAt(0);
         }
     } else if (decimalNumberCount === 1) {
         if (decimals.charAt(1) === numeralSystem.digitZero) {

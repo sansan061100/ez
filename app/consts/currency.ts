@@ -472,7 +472,7 @@ export const ALL_CURRENCIES: Record<string, CurrencyInfo> = {
     },
     'IDR': { // Rupiah
         code: 'IDR',
-        fraction: 2,
+        fraction: 0,
         symbol: {
             normal: 'Rp'
         },

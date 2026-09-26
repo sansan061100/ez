@@ -43,7 +43,7 @@
                                                 <v-icon :icon="mdiMenu" size="24" />
                                             </v-btn>
                                             <span>{{ tt('Transaction Tags') }}</span>
-                                            <v-btn class="ms-3" color="default" variant="outlined"
+                                            <v-btn class="ms-3" color="primary" variant="flat"
                                                    :disabled="loading || updating || hasEditingTag" @click="add">{{ tt('Add') }}</v-btn>
                                             <v-btn class="ms-3" color="primary" variant="tonal"
                                                    :disabled="loading || updating || hasEditingTag" @click="saveSortResult"

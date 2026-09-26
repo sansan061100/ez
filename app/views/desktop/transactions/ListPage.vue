@@ -54,7 +54,7 @@
                         <template #title>
                             <div class="title-and-toolbar d-flex align-center text-no-wrap">
                                 <span>{{ tt('Transaction List') }}</span>
-                                <v-btn class="ms-3" color="default" variant="outlined"
+                                <v-btn class="ms-3" color="primary" variant="flat"
                                        :disabled="loading || !canAddTransaction" @click="add()">
                                     {{ tt('Add') }}
                                     <v-menu activator="parent" max-height="500" :open-on-hover="true" v-if="isTransactionFromAITextRecognitionEnabled() || isTransactionFromAIImageRecognitionEnabled() || (allTransactionTemplates && allTransactionTemplates.length)">
@@ -335,7 +335,7 @@
                                             v-model="amountMenuState"
                                             @update:model-value="scrollAmountMenuToSelectedItem">
                                         <template #activator="{ props }">
-                                            <div class="d-flex align-center cursor-pointer"
+                                            <div class="d-flex align-center justify-end cursor-pointer"
                                                  :class="{ 'readonly': loading, 'text-primary': query.amountFilter }" v-bind="props">
                                                 <span>{{ tt('Amount') }}</span>
                                                 <v-icon :icon="mdiMenuDown" />
@@ -597,9 +597,8 @@
                                                 :text="allTransactionTags[tagId]?.name"
                                                 :key="tagId"
                                                 v-for="tagId in transaction.tagIds"/>
-                                        <v-chip class="transaction-tag" size="small"
-                                                :text="tt('None')"
-                                                v-if="!transaction.tagIds || !transaction.tagIds.length"/>
+                                        <span class="text-disabled"
+                                              v-if="!transaction.tagIds || !transaction.tagIds.length">—</span>
                                     </td>
                                     <td class="transaction-table-column-description text-truncate">
                                         {{ transaction.comment }}
@@ -1914,6 +1913,9 @@ init(props);
 
     .transaction-table-column-amount {
         min-width: 120px;
+        padding-inline-end: 32px !important;
+        text-align: end;
+        font-variant-numeric: tabular-nums;
     }
 
     .transaction-table-column-account {

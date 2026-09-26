@@ -1,5 +1,6 @@
 @forward 'vuetify/settings' with (
     /* Global */
+    $body-font-family: ('Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif),
     $border-radius-root: 6px,
     $grid-gutter: 16px,
     $typography: (

@@ -5,7 +5,7 @@
                 <template #title>
                     <div class="title-and-toolbar d-flex align-center">
                         <span>{{ templateType === TemplateType.Schedule.type ? tt('Scheduled Transactions') : tt('Transaction Templates') }}</span>
-                        <v-btn class="ms-3" color="default" variant="outlined"
+                        <v-btn class="ms-3" color="primary" variant="flat"
                                :disabled="loading || updating" @click="add">{{ tt('Add') }}</v-btn>
                         <v-btn class="ms-3" color="primary" variant="tonal"
                                :disabled="loading || updating" @click="saveSortResult"

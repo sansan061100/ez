@@ -75,6 +75,7 @@ import {
 import VChart from 'vue-echarts';
 
 import 'line-awesome/dist/line-awesome/css/line-awesome.css';
+import '@fontsource-variable/inter/wght.css';
 
 import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';

@@ -54,7 +54,7 @@
                         <template #title>
                             <div class="title-and-toolbar d-flex align-center">
                                 <span>{{ tt('Account List') }}</span>
-                                <v-btn class="ms-3" color="default" variant="outlined"
+                                <v-btn class="ms-3" color="primary" variant="flat"
                                        :disabled="loading" @click="add">{{ tt('Add') }}</v-btn>
                                 <v-btn class="ms-3" color="primary" variant="tonal"
                                        :disabled="loading" @click="saveSortResult"
