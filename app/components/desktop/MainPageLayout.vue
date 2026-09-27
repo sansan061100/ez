@@ -119,7 +119,7 @@
                         </v-btn>
                         <v-btn class="ms-2" color="primary" variant="text" density="comfortable"
                                :aria-label="tt('Theme')" :icon="true">
-                            <v-icon :icon="(currentTheme === 'light' ? mdiWeatherSunny : (currentTheme === 'dark' ? mdiWeatherNight : (currentTheme === 'auto' ? mdiThemeLightDark : mdiPalette)))" size="24" />
+                            <v-icon :icon="(currentTheme === 'light' ? mdiWeatherSunny : (currentTheme === 'dark' ? mdiWeatherNight : mdiThemeLightDark))" size="24" />
                             <v-tooltip activator="parent">{{ tt('Theme') }}</v-tooltip>
                             <v-menu activator="parent" location="bottom end">
                                 <v-list density="compact">
@@ -235,7 +235,6 @@ import {
     mdiPlus,
     mdiCellphone,
     mdiThemeLightDark,
-    mdiPalette,
     mdiWeatherSunny,
     mdiWeatherNight,
     mdiAccount,
