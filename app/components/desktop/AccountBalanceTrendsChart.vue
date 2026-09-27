@@ -22,7 +22,6 @@ import { type NameBigDecimalValue, itemAndIndex } from '@/core/base.ts';
 import { TextDirection } from '@/core/text.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
 import type { ColorValue, ColorStyleValue } from '@/core/color.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { AccountBalanceTrendChartType, ChartDateAggregationType } from '@/core/statistics.ts';
 
 import { isArray } from '@/lib/common.ts';
@@ -79,7 +78,7 @@ const settingsStore = useSettingsStore();
 const userStore = useUserStore();
 
 const textDirection = computed<TextDirection>(() => getCurrentLanguageTextDirection());
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const chartColors = computed<ColorValue[]>(() => settingsStore.chartColorList);
 
 const trendsChartData = computed<AccountBalanceTrendsChartData>(() => {

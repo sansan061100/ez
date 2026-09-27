@@ -21,7 +21,7 @@ import { useTokensStore } from '@/stores/token.ts';
 import { useExchangeRatesStore } from '@/stores/exchangeRates.ts';
 
 import { APPLICATION_LOGO_PATH } from '@/consts/asset.ts';
-import { ThemeType } from '@/core/theme.ts';
+import { DARK_THEMES, isKnownTheme } from '@/core/theme.ts';
 
 import { isFunction } from '@/lib/common.ts';
 import { isProduction } from '@/lib/version.ts';
@@ -52,10 +52,8 @@ const f7params = ref<Framework7Parameters>({
     darkMode: (() => {
         let darkMode: boolean | string = 'auto';
 
-        if (getTheme() === ThemeType.Light) {
-            darkMode = false;
-        } else if (getTheme() === ThemeType.Dark) {
-            darkMode = true;
+        if (isKnownTheme(getTheme())) {
+            darkMode = DARK_THEMES.has(getTheme());
         }
 
         return darkMode;

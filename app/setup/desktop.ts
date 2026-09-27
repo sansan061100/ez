@@ -1,7 +1,7 @@
 import { type App, ref } from 'vue';
 import type { I18n, Composer } from 'vue-i18n';
 
-import { createVuetify } from 'vuetify';
+import { createVuetify, type ThemeDefinition } from 'vuetify';
 import { VAlert } from 'vuetify/components/VAlert';
 import { VApp } from 'vuetify/components/VApp';
 import { VAvatar } from 'vuetify/components/VAvatar';
@@ -147,6 +147,268 @@ import '@/styles/desktop/amount-color.scss';
 const vuetifyI18nTextKeyMap: Record<string, string> = {
     'open': 'Open',
     'close': 'Close'
+};
+
+const lightTheme: ThemeDefinition = {
+    dark: false,
+    colors: {
+        'primary': '#c67e48',
+        'primary-darken-1': '#b67443',
+        'on-primary': '#ffffff',
+        'secondary': '#8c8c8c',
+        'secondary-darken-1': '#595754',
+        'on-secondary': '#ffffff',
+        'success': '#4cd964',
+        'success-darken-1': '#40b654',
+        'on-success': '#ffffff',
+        'info': '#2196f3',
+        'info-darken-1': '#1e85d7',
+        'on-info': '#ffffff',
+        'warning': '#ff9500',
+        'warning-darken-1': '#de8201',
+        'on-warning': '#ffffff',
+        'error': '#ff3b30',
+        'error-darken-1': '#e1342b',
+        'on-error': '#ffffff',
+        'teal': '#009688',
+        'background': '#faf8f4',
+        'on-background': '#413935',
+        'surface': '#fff',
+        'on-surface': '#413935',
+        'notification-background': '#ffffff',
+        'on-notification-background': '#000',
+        'grey': '#8c8c8c',
+        'grey-50': '#fafafa',
+        'grey-100': '#f0f2f8',
+        'grey-200': '#eeeeee',
+        'grey-300': '#e0e0e0',
+        'grey-400': '#bdbdbd',
+        'grey-500': '#9e9e9e',
+        'grey-600': '#757575',
+        'grey-700': '#616161',
+        'grey-800': '#424242',
+        'grey-900': '#212121',
+        'skin-bordered-background': '#fff',
+        'skin-bordered-surface': '#fff',
+        'expansion-panel-text-custom-bg': '#fafafa'
+    },
+    variables: {
+        'code-color': '#ff8000',
+        'overlay-scrim-background': '#413935',
+        'tooltip-background': '#212121',
+        'tooltip-color': '#ffffff',
+        'overlay-scrim-opacity': 0.2,
+        'hover-opacity': 0.08,
+        'focus-opacity': 0.1,
+        'selected-opacity': 0.08,
+        'activated-opacity': 0.08,
+        'pressed-opacity': 0.14,
+        'dragged-opacity': 0.1,
+        'disabled-opacity': 0.4,
+        'border-color': '#413f3b',
+        'border-opacity': 0.12,
+        'table-header-background': '#fdfcf9',
+        'high-emphasis-opacity': 0.9,
+        'medium-emphasis-opacity': 0.7,
+
+        // shadows
+        'shadow-key-umbra-color': '#413935',
+        'shadow-xs-opacity': '0.16',
+        'shadow-sm-opacity': '0.18',
+        'shadow-md-opacity': '0.20',
+        'shadow-lg-opacity': '0.22',
+        'shadow-xl-opacity': '0.24',
+    }
+};
+
+const darkTheme: ThemeDefinition = {
+    dark: true,
+    colors: {
+        'primary': '#c67e48',
+        'primary-darken-1': '#b67443',
+        'on-primary': '#ffffff',
+        'secondary': '#9d9b99',
+        'secondary-darken-1': '#3e3d3c',
+        'on-secondary': '#fff',
+        'success': '#4cd964',
+        'success-darken-1': '#40b654',
+        'on-success': '#ffffff',
+        'info': '#2196f3',
+        'info-darken-1': '#1e85d7',
+        'on-info': '#ffffff',
+        'warning': '#ff9500',
+        'warning-darken-1': '#de8201',
+        'on-warning': '#ffffff',
+        'error': '#ff3b30',
+        'error-darken-1': '#e1342b',
+        'on-error': '#ffffff',
+        'teal': '#009688',
+        'background': '#060504',
+        'on-background': '#fcf0e3',
+        'surface': '#1a1a1a',
+        'on-surface': '#fcf0e3',
+        'notification-background': '#2e2e2e',
+        'on-notification-background': '#fff',
+        'grey': '#4d4c4b',
+        'grey-50': '#212121',
+        'grey-100': '#424242',
+        'grey-200': '#616161',
+        'grey-300': '#757575',
+        'grey-400': '#909090',
+        'grey-500': '#a2a2a2',
+        'grey-600': '#b4b4b4',
+        'grey-700': '#c6c6c6',
+        'grey-800': '#d8d8d8',
+        'grey-900': '#eaeaea',
+        'skin-bordered-background': '#4b3b2d',
+        'skin-bordered-surface': '#4b3b2d',
+        'expansion-panel-text-custom-bg': '#503f33'
+    },
+    variables: {
+        'code-color': '#ff8000',
+        'overlay-scrim-background': '#615955',
+        'tooltip-background': '#333333',
+        'tooltip-color': '#eeeeee',
+        'overlay-scrim-opacity': 0.2,
+        'hover-opacity': 0.12,
+        'focus-opacity': 0.1,
+        'selected-opacity': 0.08,
+        'activated-opacity': 0.08,
+        'pressed-opacity': 0.14,
+        'disabled-opacity': 0.4,
+        'dragged-opacity': 0.1,
+        'border-color': '#edece9',
+        'border-opacity': 0.12,
+        'table-header-background': '#23201d',
+        'high-emphasis-opacity': 0.9,
+        'medium-emphasis-opacity': 0.7,
+
+        // Shadows
+        'shadow-key-umbra-color': '#383736',
+        'shadow-xs-opacity': '0.20',
+        'shadow-sm-opacity': '0.22',
+        'shadow-md-opacity': '0.24',
+        'shadow-lg-opacity': '0.26',
+        'shadow-xl-opacity': '0.28',
+    }
+};
+
+// Themes that change more than colors: the matching shape/font/texture rules live in styles/desktop/themes.scss
+const ledgerTheme: ThemeDefinition = {
+    dark: false,
+    colors: {
+        ...lightTheme.colors,
+        'primary': '#7a4a24',
+        'primary-darken-1': '#633b1c',
+        'secondary': '#8a7a62',
+        'background': '#f3ead6',
+        'on-background': '#3b2f22',
+        'surface': '#fbf5e6',
+        'on-surface': '#3b2f22',
+        'skin-bordered-background': '#fbf5e6',
+        'skin-bordered-surface': '#fbf5e6',
+        'expansion-panel-text-custom-bg': '#f6eedb'
+    },
+    variables: {
+        ...lightTheme.variables,
+        'border-color': '#7a5a3a',
+        'border-opacity': 0.25,
+        'table-header-background': '#efe3c8',
+        'shadow-key-umbra-color': '#3b2f22'
+    }
+};
+
+const brutalistTheme: ThemeDefinition = {
+    dark: false,
+    colors: {
+        ...lightTheme.colors,
+        'primary': '#ff4f1f',
+        'primary-darken-1': '#e03e12',
+        'on-primary': '#000000',
+        'secondary': '#000000',
+        'on-secondary': '#ffffff',
+        'background': '#fff6d6',
+        'on-background': '#000000',
+        'surface': '#ffffff',
+        'on-surface': '#000000',
+        'skin-bordered-background': '#ffffff',
+        'skin-bordered-surface': '#ffffff'
+    },
+    variables: {
+        ...lightTheme.variables,
+        'border-color': '#000000',
+        'border-opacity': 1,
+        'table-header-background': '#ffe066',
+        'overlay-scrim-background': '#000000',
+        'overlay-scrim-opacity': 0.5,
+        'hover-opacity': 0.16,
+        'high-emphasis-opacity': 1,
+        'medium-emphasis-opacity': 0.85
+    }
+};
+
+const terminalTheme: ThemeDefinition = {
+    dark: true,
+    colors: {
+        ...darkTheme.colors,
+        'primary': '#33ff66',
+        'primary-darken-1': '#22cc4f',
+        'on-primary': '#001a08',
+        'secondary': '#1f9e44',
+        'secondary-darken-1': '#0f5c26',
+        'on-secondary': '#001a08',
+        'background': '#020b04',
+        'on-background': '#7dffa0',
+        'surface': '#04140a',
+        'on-surface': '#7dffa0',
+        'notification-background': '#04140a',
+        'on-notification-background': '#7dffa0',
+        'skin-bordered-background': '#04140a',
+        'skin-bordered-surface': '#04140a',
+        'expansion-panel-text-custom-bg': '#062010'
+    },
+    variables: {
+        ...darkTheme.variables,
+        'code-color': '#ffcc00',
+        'border-color': '#33ff66',
+        'border-opacity': 0.35,
+        'table-header-background': '#062010',
+        'tooltip-background': '#062010',
+        'tooltip-color': '#7dffa0',
+        'overlay-scrim-background': '#000000',
+        'overlay-scrim-opacity': 0.6,
+        'shadow-key-umbra-color': '#000000'
+    }
+};
+
+const auroraTheme: ThemeDefinition = {
+    dark: true,
+    colors: {
+        ...darkTheme.colors,
+        'primary': '#a78bfa',
+        'primary-darken-1': '#8b6cf0',
+        'on-primary': '#12092e',
+        'secondary': '#67e8f9',
+        'secondary-darken-1': '#22b8cf',
+        'on-secondary': '#062a30',
+        'background': '#0b0a1f',
+        'on-background': '#ece9ff',
+        'surface': '#1a1838',
+        'on-surface': '#ece9ff',
+        'notification-background': '#1a1838',
+        'skin-bordered-background': '#1a1838',
+        'skin-bordered-surface': '#1a1838',
+        'expansion-panel-text-custom-bg': '#221f45'
+    },
+    variables: {
+        ...darkTheme.variables,
+        'border-color': '#ffffff',
+        'border-opacity': 0.14,
+        'table-header-background': '#1f1c40',
+        'overlay-scrim-background': '#05040f',
+        'overlay-scrim-opacity': 0.5,
+        'shadow-key-umbra-color': '#05040f'
+    }
 };
 
 // setupDesktopApp installs the ui framework, the global components and directives of the desktop version
@@ -337,148 +599,12 @@ export function setupDesktopApp(app: App, i18n: I18n<Record<string, unknown>, Re
         theme: {
             defaultTheme: 'light',
             themes: {
-                light: {
-                    dark: false,
-                    colors: {
-                        'primary': '#c67e48',
-                        'primary-darken-1': '#b67443',
-                        'on-primary': '#ffffff',
-                        'secondary': '#8c8c8c',
-                        'secondary-darken-1': '#595754',
-                        'on-secondary': '#ffffff',
-                        'success': '#4cd964',
-                        'success-darken-1': '#40b654',
-                        'on-success': '#ffffff',
-                        'info': '#2196f3',
-                        'info-darken-1': '#1e85d7',
-                        'on-info': '#ffffff',
-                        'warning': '#ff9500',
-                        'warning-darken-1': '#de8201',
-                        'on-warning': '#ffffff',
-                        'error': '#ff3b30',
-                        'error-darken-1': '#e1342b',
-                        'on-error': '#ffffff',
-                        'teal': '#009688',
-                        'background': '#faf8f4',
-                        'on-background': '#413935',
-                        'surface': '#fff',
-                        'on-surface': '#413935',
-                        'notification-background': '#ffffff',
-                        'on-notification-background': '#000',
-                        'grey': '#8c8c8c',
-                        'grey-50': '#fafafa',
-                        'grey-100': '#f0f2f8',
-                        'grey-200': '#eeeeee',
-                        'grey-300': '#e0e0e0',
-                        'grey-400': '#bdbdbd',
-                        'grey-500': '#9e9e9e',
-                        'grey-600': '#757575',
-                        'grey-700': '#616161',
-                        'grey-800': '#424242',
-                        'grey-900': '#212121',
-                        'skin-bordered-background': '#fff',
-                        'skin-bordered-surface': '#fff',
-                        'expansion-panel-text-custom-bg': '#fafafa'
-                    },
-                    variables: {
-                        'code-color': '#ff8000',
-                        'overlay-scrim-background': '#413935',
-                        'tooltip-background': '#212121',
-                        'tooltip-color': '#ffffff',
-                        'overlay-scrim-opacity': 0.2,
-                        'hover-opacity': 0.08,
-                        'focus-opacity': 0.1,
-                        'selected-opacity': 0.08,
-                        'activated-opacity': 0.08,
-                        'pressed-opacity': 0.14,
-                        'dragged-opacity': 0.1,
-                        'disabled-opacity': 0.4,
-                        'border-color': '#413f3b',
-                        'border-opacity': 0.12,
-                        'table-header-background': '#fdfcf9',
-                        'high-emphasis-opacity': 0.9,
-                        'medium-emphasis-opacity': 0.7,
-
-                        // shadows
-                        'shadow-key-umbra-color': '#413935',
-                        'shadow-xs-opacity': '0.16',
-                        'shadow-sm-opacity': '0.18',
-                        'shadow-md-opacity': '0.20',
-                        'shadow-lg-opacity': '0.22',
-                        'shadow-xl-opacity': '0.24',
-                    }
-                },
-                dark: {
-                    dark: true,
-                    colors: {
-                        'primary': '#c67e48',
-                        'primary-darken-1': '#b67443',
-                        'on-primary': '#ffffff',
-                        'secondary': '#9d9b99',
-                        'secondary-darken-1': '#3e3d3c',
-                        'on-secondary': '#fff',
-                        'success': '#4cd964',
-                        'success-darken-1': '#40b654',
-                        'on-success': '#ffffff',
-                        'info': '#2196f3',
-                        'info-darken-1': '#1e85d7',
-                        'on-info': '#ffffff',
-                        'warning': '#ff9500',
-                        'warning-darken-1': '#de8201',
-                        'on-warning': '#ffffff',
-                        'error': '#ff3b30',
-                        'error-darken-1': '#e1342b',
-                        'on-error': '#ffffff',
-                        'teal': '#009688',
-                        'background': '#060504',
-                        'on-background': '#fcf0e3',
-                        'surface': '#1a1a1a',
-                        'on-surface': '#fcf0e3',
-                        'notification-background': '#2e2e2e',
-                        'on-notification-background': '#fff',
-                        'grey': '#4d4c4b',
-                        'grey-50': '#212121',
-                        'grey-100': '#424242',
-                        'grey-200': '#616161',
-                        'grey-300': '#757575',
-                        'grey-400': '#909090',
-                        'grey-500': '#a2a2a2',
-                        'grey-600': '#b4b4b4',
-                        'grey-700': '#c6c6c6',
-                        'grey-800': '#d8d8d8',
-                        'grey-900': '#eaeaea',
-                        'skin-bordered-background': '#4b3b2d',
-                        'skin-bordered-surface': '#4b3b2d',
-                        'expansion-panel-text-custom-bg': '#503f33'
-                    },
-                    variables: {
-                        'code-color': '#ff8000',
-                        'overlay-scrim-background': '#615955',
-                        'tooltip-background': '#333333',
-                        'tooltip-color': '#eeeeee',
-                        'overlay-scrim-opacity': 0.2,
-                        'hover-opacity': 0.12,
-                        'focus-opacity': 0.1,
-                        'selected-opacity': 0.08,
-                        'activated-opacity': 0.08,
-                        'pressed-opacity': 0.14,
-                        'disabled-opacity': 0.4,
-                        'dragged-opacity': 0.1,
-                        'border-color': '#edece9',
-                        'border-opacity': 0.12,
-                        'table-header-background': '#23201d',
-                        'high-emphasis-opacity': 0.9,
-                        'medium-emphasis-opacity': 0.7,
-
-                        // Shadows
-                        'shadow-key-umbra-color': '#383736',
-                        'shadow-xs-opacity': '0.20',
-                        'shadow-sm-opacity': '0.22',
-                        'shadow-md-opacity': '0.24',
-                        'shadow-lg-opacity': '0.26',
-                        'shadow-xl-opacity': '0.28',
-                    }
-                }
+                light: lightTheme,
+                dark: darkTheme,
+                ledger: ledgerTheme,
+                brutalist: brutalistTheme,
+                terminal: terminalTheme,
+                aurora: auroraTheme
             }
         },
         locale: {

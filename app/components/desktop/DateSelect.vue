@@ -30,7 +30,6 @@ import { useTheme } from 'vuetify';
 import { useI18n } from '@/locales/helpers.ts';
 
 import { type TextualYearMonthDay } from '@/core/datetime.ts';
-import { ThemeType } from '@/core/theme.ts';
 
 import {
     getLocalDateFromYearDashMonthDashDay,
@@ -58,7 +57,7 @@ const dateTime = computed<Date | null>({
     set: (value: Date | null) => emit('update:modelValue', value ? getGregorianCalendarYearAndMonthFromLocalDate(value) : '')
 });
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const displayTime = computed<string>({
     get: () => {
         if (props.modelValue) {

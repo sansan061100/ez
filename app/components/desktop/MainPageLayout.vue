@@ -118,9 +118,15 @@
                             <v-tooltip activator="parent">{{ tt('Use on Mobile Device') }}</v-tooltip>
                         </v-btn>
                         <v-btn class="ms-2" color="primary" variant="text" density="comfortable"
-                               :aria-label="tt('Theme')" :icon="true"
-                               @click="(currentTheme === 'light' ? currentTheme = 'dark' : (currentTheme === 'dark' ? currentTheme = 'auto' : currentTheme = 'light'))">
-                            <v-icon :icon="(currentTheme === 'light' ? mdiWeatherSunny : (currentTheme === 'dark' ? mdiWeatherNight : mdiThemeLightDark))" size="24" />
+                               :aria-label="tt('Theme')" :icon="true">
+                            <v-icon :icon="(currentTheme === 'light' ? mdiWeatherSunny : (currentTheme === 'dark' ? mdiWeatherNight : (currentTheme === 'auto' ? mdiThemeLightDark : mdiPalette)))" size="24" />
+                            <v-tooltip activator="parent">{{ tt('Theme') }}</v-tooltip>
+                            <v-menu activator="parent" location="bottom end">
+                                <v-list density="compact">
+                                    <v-list-item :key="item.value" :title="item.name" :active="currentTheme === item.value"
+                                                 @click="currentTheme = item.value" v-for="item in allThemes" />
+                                </v-list>
+                            </v-menu>
                         </v-btn>
                         <v-avatar class="cursor-pointer ms-3" variant="tonal" :aria-label="tt('Settings')"
                                   :color="currentUserAvatar ? 'rgba(0,0,0,0)' : 'primary'">
@@ -200,6 +206,7 @@ import { useDisplay, useTheme } from 'vuetify';
 import { useRoute, useRouter } from 'vue-router';
 
 import { useI18n } from '@/locales/helpers.ts';
+import { useAppSettingPageBase } from '@/views/base/settings/AppSettingsPageBase.ts';
 
 import { useRootStore } from '@/stores/index.ts';
 import { useSettingsStore } from '@/stores/setting.ts';
@@ -207,7 +214,7 @@ import { useUserStore } from '@/stores/user.ts';
 import { useDesktopPageStore } from '@/stores/desktopPage.ts';
 
 import { APPLICATION_LOGO_PATH } from '@/consts/asset.ts';
-import { ThemeType } from '@/core/theme.ts';
+import { isKnownTheme } from '@/core/theme.ts';
 
 import { getSystemTheme, setExpenseAndIncomeAmountColor } from '@/lib/ui/common.ts';
 
@@ -228,6 +235,7 @@ import {
     mdiPlus,
     mdiCellphone,
     mdiThemeLightDark,
+    mdiPalette,
     mdiWeatherSunny,
     mdiWeatherNight,
     mdiAccount,
@@ -250,6 +258,7 @@ const route = useRoute();
 const router = useRouter();
 
 const { tt, initLocale } = useI18n();
+const { allThemes } = useAppSettingPageBase();
 
 const rootStore = useRootStore();
 const settingsStore = useSettingsStore();
@@ -278,11 +287,7 @@ const currentTheme = computed<string>({
         if (value !== settingsStore.appSettings.theme) {
             settingsStore.setTheme(value);
 
-            if (value === ThemeType.Light || value === ThemeType.Dark) {
-                theme.change(value);
-            } else {
-                theme.change(getSystemTheme());
-            }
+            theme.change(isKnownTheme(value) ? value : getSystemTheme());
         }
     }
 });

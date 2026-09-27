@@ -17,7 +17,6 @@ import { useSettingsStore } from '@/stores/setting.ts';
 import { itemAndIndex } from '@/core/base.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
 import type { ColorValue, ColorStyleValue } from '@/core/color.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { type AxisChartSourceDataItem, ChartValueType } from '@/core/chart.ts';
 
 import { isArray, isString, isNumber } from '@/lib/common.ts';
@@ -76,7 +75,7 @@ const {
 
 const settingsStore = useSettingsStore();
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const chartColors = computed<ColorValue[]>(() => settingsStore.chartColorList);
 
 const finalClass = computed<string>(() => {

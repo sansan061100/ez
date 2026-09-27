@@ -16,7 +16,6 @@ import { useUserStore } from '@/stores/user.ts';
 
 import type { BigDecimal } from '@/core/numeral.ts';
 import { type WeekDayValue, KnownDateTimeFormat } from '@/core/datetime.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { ChartValueType, type CalendarChartSourceDataItem } from '@/core/chart.ts';
 
 import {
@@ -81,7 +80,7 @@ const firstDayOfWeek = computed<WeekDayValue>(() => userStore.currentUserFirstDa
 const dayNames = computed<string[]>(() => getAllMinWeekdayNames());
 const monthNames = computed<string[]>(() => getAllShortMonthNames());
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const finalClass = computed<string>(() => {
     let finalClass = '';
 

@@ -16,7 +16,6 @@ import { type CommonPieChartDataItem, type CommonPieChartProps, usePieChartBase 
 import { itemAndIndex } from '@/core/base.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
 import type { ColorStyleValue } from '@/core/color.ts';
-import { ThemeType } from '@/core/theme.ts';
 
 import { getObjectOwnFieldCount } from '@/lib/common.ts';
 import { BIG_DECIMAL_ZERO, parseBigDecimal } from '@/lib/numeral.ts';
@@ -46,7 +45,7 @@ const { selectedIndex, validItems, allItemsMap } = usePieChartBase(props);
 
 const selectedLegends = ref<Record<string, boolean>>({});
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 
 const seriesRadius = computed<[number | string, string]>(() => {
     if (props.styleType === 'donut') {

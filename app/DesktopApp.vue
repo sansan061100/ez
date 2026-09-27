@@ -30,7 +30,7 @@ import { useTokensStore } from '@/stores/token.ts';
 import { useExchangeRatesStore } from '@/stores/exchangeRates.ts';
 
 import { APPLICATION_LOGO_PATH } from '@/consts/asset.ts';
-import { ThemeType } from '@/core/theme.ts';
+import { ThemeType, isKnownTheme } from '@/core/theme.ts';
 import { isProduction } from '@/lib/version.ts';
 import { getBasePath, getUiModeBasePath } from '@/lib/web.ts';
 import { initMapProvider } from '@/lib/map/index.ts';
@@ -72,13 +72,7 @@ watch(currentNotificationContent, (newValue) => {
     showNotification.value = !!newValue;
 });
 
-if (settingsStore.appSettings.theme === ThemeType.Light) {
-    theme.change(ThemeType.Light);
-} else if (settingsStore.appSettings.theme === ThemeType.Dark) {
-    theme.change(ThemeType.Dark);
-} else {
-    theme.change(getSystemTheme());
-}
+theme.change(isKnownTheme(settingsStore.appSettings.theme) ? settingsStore.appSettings.theme : getSystemTheme());
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
     if (settingsStore.appSettings.theme === 'auto') {

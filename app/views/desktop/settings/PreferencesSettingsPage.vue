@@ -427,7 +427,7 @@ import { useAccountsStore } from '@/stores/account.ts';
 import { useTransactionCategoriesStore } from '@/stores/transactionCategory.ts';
 
 import type { NameNumeralValue } from '@/core/base.ts';
-import { ThemeType } from '@/core/theme.ts';
+import { isKnownTheme } from '@/core/theme.ts';
 import { type LocalizedDateRange, DateRangeScene } from '@/core/datetime.ts';
 import { CategoryType } from '@/core/category.ts';
 import { DEFAULT_RECONCILIATION_STATEMENT_DATE_RANGE_IN_DESKTOP } from '@/core/statistics.ts';
@@ -503,11 +503,7 @@ const currentTheme = computed<string>({
         if (value !== settingsStore.appSettings.theme) {
             settingsStore.setTheme(value);
 
-            if (value === ThemeType.Light || value === ThemeType.Dark) {
-                theme.change(value);
-            } else {
-                theme.change(getSystemTheme());
-            }
+            theme.change(isKnownTheme(value) ? value : getSystemTheme());
         }
     }
 });

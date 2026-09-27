@@ -37,7 +37,6 @@ import { useTheme } from 'vuetify';
 import { useI18n } from '@/locales/helpers.ts';
 import { type CommonMonthRangeSelectionProps, useMonthRangeSelectionBase } from '@/components/base/MonthRangeSelectionBase.ts';
 
-import { ThemeType } from '@/core/theme.ts';
 import { type TextualYearMonth } from '@/core/datetime.ts';
 
 import { getYear0BasedMonthObjectFromString } from '@/lib/datetime.ts';
@@ -58,7 +57,7 @@ const theme = useTheme();
 const { tt, formatRange } = useI18n();
 const { dateRange, beginDateTime, endDateTime, getFinalMonthRange } = useMonthRangeSelectionBase(props);
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const showState = computed<boolean>({
     get: () => props.show || false,
     set: (value) => emit('update:show', value)

@@ -18,7 +18,6 @@ import { itemAndIndex } from '@/core/base.ts';
 import { TextDirection } from '@/core/text.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
 import type { ColorValue, ColorStyleValue } from '@/core/color.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { type AxisChartSourceDataItem, ChartValueType } from '@/core/chart.ts';
 import { DISPLAY_HIDDEN_AMOUNT } from '@/consts/numeral.ts';
 
@@ -114,7 +113,7 @@ const settingsStore = useSettingsStore();
 const selectedLegends = ref<Record<string, boolean>>({});
 
 const textDirection = computed<TextDirection>(() => getCurrentLanguageTextDirection());
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const chartColors = computed<ColorValue[]>(() => settingsStore.chartColorList);
 
 const finalClass = computed<string>(() => {

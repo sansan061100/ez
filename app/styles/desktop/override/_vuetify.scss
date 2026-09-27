@@ -315,7 +315,9 @@
     }
 }
 
-.v-theme--dark {
+.v-theme--dark,
+.v-theme--terminal,
+.v-theme--aurora {
     .v-btn--variant-elevated,
     .v-btn--variant-flat {
         &.v-btn--disabled .v-btn__overlay {

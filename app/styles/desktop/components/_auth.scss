@@ -138,7 +138,9 @@
     .auth-illustration__step-line { fill: none; stroke: rgba(var(--v-theme-primary), 0.19); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 4 8; }
     .auth-illustration__step-dot { stroke: rgba(var(--v-theme-primary), 0.24); stroke-width: 3; }
 
-    .v-theme--dark & {
+    .v-theme--dark &,
+    .v-theme--terminal &,
+    .v-theme--aurora & {
         .auth-illustration__surface { stroke: rgba(var(--ebk-border), 0.11); }
         .auth-illustration__shadow { fill: rgba(var(--ebk-shadow-color), 0.28); }
         .auth-illustration__soft { fill: rgba(var(--v-theme-primary), 0.17); }

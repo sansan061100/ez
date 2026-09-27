@@ -5,8 +5,7 @@
 }
 
 :root.expense-amount-color-green {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-expense: var(--ebk-amount-color-green);
     }
 
@@ -21,8 +20,7 @@
 }
 
 :root.income-amount-color-green {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-income: var(--ebk-amount-color-green);
     }
 
@@ -37,8 +35,7 @@
 }
 
 :root.expense-amount-color-red {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-expense: var(--ebk-amount-color-red);
     }
 
@@ -53,8 +50,7 @@
 }
 
 :root.income-amount-color-red {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-income: var(--ebk-amount-color-red);
     }
 
@@ -69,8 +65,7 @@
 }
 
 :root.expense-amount-color-yellow {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-expense: var(--ebk-amount-color-yellow);
     }
 
@@ -85,8 +80,7 @@
 }
 
 :root.income-amount-color-yellow {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-income: var(--ebk-amount-color-yellow);
     }
 
@@ -101,8 +95,7 @@
 }
 
 :root.expense-amount-color-blackorwhite {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-expense: var(--v-theme-on-surface);
 
         .text-expense {
@@ -117,8 +110,7 @@
 }
 
 :root.income-amount-color-blackorwhite {
-    .v-theme--light,
-    .v-theme--dark {
+    [class*='v-theme--'] {
         --v-theme-income: var(--v-theme-on-surface);
 
         .text-income {

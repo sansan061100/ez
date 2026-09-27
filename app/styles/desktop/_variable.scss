@@ -42,7 +42,9 @@
     --ebk-focus-ring: 0 0 0 3px rgba(var(--ebk-primary-color), 0.16);
 }
 
-.v-theme--dark {
+.v-theme--dark,
+.v-theme--terminal,
+.v-theme--aurora {
     --v-expand-panel-title-bg: rgba(var(--v-theme-on-surface), 0.04);
     --v-expand-panel-disabled-title-bg: rgba(var(--v-theme-on-surface), 0.02);
     --v-card-title-bg: rgba(var(--v-theme-on-surface), 0.04);

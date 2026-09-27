@@ -28,7 +28,6 @@ import { useI18n } from '@/locales/helpers.ts';
 import { useOverviewStore } from '@/stores/overview.ts';
 
 import { DateRange } from '@/core/datetime.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { TransactionType } from '@/core/transaction.ts';
 import {
     type TransactionOverviewData,
@@ -61,7 +60,7 @@ const { tt } = useI18n();
 
 const overviewStore = useOverviewStore();
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const transactionOverview = computed<TransactionOverviewData>(() => overviewStore.transactionOverview);
 
 const displayTitle = computed<string>(() => {

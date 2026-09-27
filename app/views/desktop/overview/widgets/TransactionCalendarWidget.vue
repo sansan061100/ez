@@ -32,7 +32,6 @@ import { useTheme } from 'vuetify';
 import { useI18n } from '@/locales/helpers.ts';
 import { useTransactionCalendarWidgetBase } from '@/views/base/overview/TransactionCalendarWidgetBase.ts';
 
-import { ThemeType } from '@/core/theme.ts';
 import type { TextualYearMonthDay } from '@/core/datetime.ts';
 
 import {
@@ -65,7 +64,7 @@ const {
     getTransactionListUrl
 } = useTransactionCalendarWidgetBase(props);
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 
 function selectDate(date: TextualYearMonthDay): void {
     currentCalendarDate.value = date;

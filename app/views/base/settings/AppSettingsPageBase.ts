@@ -46,7 +46,11 @@ export function useAppSettingPageBase() {
         return [
             { name: tt('System Default'), value: 'auto' },
             { name: tt('Light'), value: 'light' },
-            { name: tt('Dark'), value: 'dark' }
+            { name: tt('Dark'), value: 'dark' },
+            { name: tt('Ledger'), value: 'ledger' },
+            { name: tt('Brutalist'), value: 'brutalist' },
+            { name: tt('Retro Terminal'), value: 'terminal' },
+            { name: tt('Aurora Glass'), value: 'aurora' }
         ];
     });
 

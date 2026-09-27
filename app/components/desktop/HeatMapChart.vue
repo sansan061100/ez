@@ -15,7 +15,6 @@ import { useI18n } from '@/locales/helpers.ts';
 import { itemAndIndex } from '@/core/base.ts';
 import { TextDirection } from '@/core/text.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { type AxisChartSourceDataItem, ChartValueType } from '@/core/chart.ts';
 
 import { isArray } from '@/lib/common.ts';
@@ -58,7 +57,7 @@ const {
 } = useI18n();
 
 const textDirection = computed<TextDirection>(() => getCurrentLanguageTextDirection());
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const finalClass = computed<string>(() => {
     let finalClass = '';
 

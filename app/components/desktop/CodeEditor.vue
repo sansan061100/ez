@@ -25,7 +25,6 @@ import { useTheme } from 'vuetify';
 import type * as Monaco from 'monaco-editor/editor';
 import type { LanguageServiceDefaults } from 'monaco-editor/languages/features/typescript/register';
 
-import { ThemeType } from '@/core/theme.ts';
 
 import logger from '@/lib/logger.ts';
 
@@ -64,7 +63,7 @@ let extraLibDisposables: Monaco.IDisposable[] = [];
 
 const editorReady = ref<boolean>(false);
 
-const editorTheme = computed<string>(() => theme.global.name.value === ThemeType.Dark ? 'vs-dark' : 'vs');
+const editorTheme = computed<string>(() => theme.global.current.value.dark ? 'vs-dark' : 'vs');
 
 function disposeExtraLibs(): void {
     for (const disposable of extraLibDisposables) {

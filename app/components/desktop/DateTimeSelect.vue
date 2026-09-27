@@ -78,7 +78,6 @@ import { useTheme } from 'vuetify';
 import { useI18n } from '@/locales/helpers.ts';
 import { type TimePickerValue, useDateTimeSelectionBase } from '@/components/base/DateTimeSelectionBase.ts';
 
-import { ThemeType } from '@/core/theme.ts';
 import { NumeralSystem } from '@/core/numeral.ts';
 import {
     type DateTime,
@@ -136,7 +135,7 @@ const {
     generateAllMinutesOrSeconds
 } = useDateTimeSelectionBase();
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const numeralSystem = computed<NumeralSystem>(() => getCurrentNumeralSystemType());
 const longDateFormatOrder = computed<DateFormatOrder>(() => getLongDateFormatOrder());
 const shortDateFormatOrder = computed<DateFormatOrder>(() => getShortDateFormatOrder());

@@ -63,7 +63,6 @@ import { useI18n } from '@/locales/helpers.ts';
 import { useUserCustomIconsStore } from '@/stores/userCustomIcon.ts';
 
 import { KnownFileType } from '@/core/file.ts';
-import { ThemeType } from '@/core/theme.ts';
 import { SUPPORTED_IMAGE_EXTENSIONS } from '@/consts/file.ts';
 
 import { generateRandomUUID } from '@/lib/misc.ts';
@@ -107,7 +106,7 @@ const activePointerId = ref<number>();
 const lastPointerX = ref<number>(0);
 const lastPointerY = ref<number>(0);
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 
 const baseScale = computed(() => imageWidth.value && imageHeight.value ? Math.max(CROP_STAGE_SIZE / imageWidth.value, CROP_STAGE_SIZE / imageHeight.value) : 1);
 const previewStyle = computed(() => ({

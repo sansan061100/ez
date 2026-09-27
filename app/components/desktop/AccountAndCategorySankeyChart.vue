@@ -23,7 +23,6 @@ import {
 
 import { values } from '@/core/base.ts';
 import type { BigDecimal } from '@/core/numeral.ts';
-import { ThemeType } from '@/core/theme.ts';
 
 import { isString, isNumber } from '@/lib/common.ts';
 import { BIG_DECIMAL_ZERO } from '@/lib/numeral.ts';
@@ -120,7 +119,7 @@ const overviewDataItemTypeSankeyChartNodeItemDepthMap: Record<TransactionCategor
     [TransactionCategoricalOverviewAnalysisDataItemType.ExpenseByPrimaryCategory]: SankeyChartDepth.PrimaryExpenseCategory
 };
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 
 const sankeyData = computed<SankeyChartData>(() => {
     const nodes: SankeyChartNodeItem[] = [];

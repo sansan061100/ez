@@ -1,0 +1,321 @@
+// Themes that differ in shape, type and texture, not only color.
+// Colors live in setup/desktop.ts; here each theme overrides the --ebk-* tokens and adds its own rules.
+
+@mixin theme-font($stack) {
+    &,
+    & *:not(.monaco-editor *) {
+        font-family: $stack !important;
+    }
+}
+
+$serif-stack: ('Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif);
+$mono-stack: (ui-monospace, 'JetBrains Mono', 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'Courier New', monospace);
+
+// ---------------------------------------------------------------
+// Ledger: an old accounting book. Paper, serif, ruled rows, no shadows.
+// ---------------------------------------------------------------
+.v-theme--ledger {
+    @include theme-font($serif-stack);
+
+    --ebk-radius-sm: 2px;
+    --ebk-radius-md: 3px;
+    --ebk-radius-lg: 4px;
+    --ebk-radius-xl: 4px;
+    --ebk-surface: 251, 245, 230;
+    --ebk-surface-muted: 243, 234, 214;
+    --ebk-surface-raised: 251, 245, 230;
+    --ebk-border: 122, 90, 58;
+    --ebk-shadow-color: 59, 47, 34;
+    --ebk-shadow-sm: none;
+    --ebk-shadow-md: 0 1px 0 rgba(var(--ebk-border), 0.3);
+    --ebk-shadow-lg: 0 2px 0 rgba(var(--ebk-border), 0.3), 0 12px 30px rgba(var(--ebk-shadow-color), 0.12);
+
+    .layout-wrapper.layout-nav-type-vertical {
+        // paper grain
+        background:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+            rgb(var(--v-theme-background));
+    }
+
+    .v-card,
+    .v-expansion-panels .v-expansion-panel {
+        border: 1px solid rgba(var(--ebk-border), 0.35);
+    }
+
+    .v-card-title,
+    h1, h2, h3, h4, h5, h6,
+    [class*='text-h'] {
+        font-style: italic;
+        font-weight: 600;
+    }
+
+    .v-table {
+        // accounting double rule under the header, faint ruled lines between rows
+        th {
+            border-bottom: 3px double rgba(var(--ebk-border), 0.7) !important;
+            font-variant: small-caps;
+        }
+
+        td {
+            border-bottom: 1px solid rgba(var(--ebk-border), 0.18) !important;
+        }
+    }
+
+    .v-btn {
+        font-variant: small-caps;
+        text-transform: none;
+    }
+
+    .v-field--variant-outlined .v-field__outline {
+        --v-field-border-opacity: 0.45;
+    }
+}
+
+// ---------------------------------------------------------------
+// Brutalist: hard edges, thick black outlines, offset shadows, mono type.
+// ---------------------------------------------------------------
+.v-theme--brutalist {
+    @include theme-font($mono-stack);
+
+    --ebk-radius-sm: 0;
+    --ebk-radius-md: 0;
+    --ebk-radius-lg: 0;
+    --ebk-radius-xl: 0;
+    --ebk-border: 0, 0, 0;
+    --ebk-shadow-color: 0, 0, 0;
+    --ebk-shadow-sm: 4px 4px 0 #000;
+    --ebk-shadow-md: 6px 6px 0 #000;
+    --ebk-shadow-lg: 8px 8px 0 #000;
+    --ebk-focus-ring: 0 0 0 3px #000;
+
+    .layout-navbar,
+    .layout-vertical-nav {
+        background: rgb(var(--v-theme-surface));
+        backdrop-filter: none;
+        box-shadow: none;
+        border-color: #000;
+        border-width: 3px;
+    }
+
+    .v-card,
+    .v-expansion-panels .v-expansion-panel,
+    .v-menu > .v-overlay__content,
+    .v-alert,
+    .v-chip {
+        border: 2px solid #000 !important;
+        border-radius: 0 !important;
+    }
+
+    .v-btn {
+        border-radius: 0 !important;
+        font-weight: 800;
+        text-transform: uppercase;
+        transition: transform 80ms ease, box-shadow 80ms ease;
+
+        &.v-btn--variant-flat,
+        &.v-btn--variant-elevated,
+        &.v-btn--variant-outlined,
+        &.v-btn--variant-tonal {
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0 #000;
+
+            &:hover:not(.v-btn--disabled) {
+                transform: translate(-1px, -1px);
+                box-shadow: 5px 5px 0 #000;
+            }
+
+            &:active:not(.v-btn--disabled) {
+                transform: translate(3px, 3px);
+                box-shadow: none;
+            }
+        }
+    }
+
+    .v-field {
+        border-radius: 0 !important;
+    }
+
+    .v-field--variant-outlined .v-field__outline {
+        --v-field-border-width: 2px;
+        --v-field-border-opacity: 1;
+    }
+
+    .v-card-title,
+    h1, h2, h3, h4, h5, h6,
+    [class*='text-h'] {
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    .v-table {
+        th {
+            border-bottom: 3px solid #000 !important;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        td {
+            border-bottom: 1px solid #000 !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------------
+// Retro terminal: phosphor green on black, glow, scanlines, square corners.
+// ---------------------------------------------------------------
+.v-theme--terminal {
+    @include theme-font($mono-stack);
+
+    --ebk-radius-sm: 0;
+    --ebk-radius-md: 0;
+    --ebk-radius-lg: 0;
+    --ebk-radius-xl: 0;
+    --ebk-surface: 4, 20, 10;
+    --ebk-surface-muted: 6, 32, 16;
+    --ebk-surface-raised: 6, 32, 16;
+    --ebk-border: 51, 255, 102;
+    --ebk-shadow-color: 51, 255, 102;
+    --ebk-shadow-sm: 0 0 0 1px rgba(51, 255, 102, 0.25);
+    --ebk-shadow-md: 0 0 0 1px rgba(51, 255, 102, 0.35), 0 0 18px rgba(51, 255, 102, 0.12);
+    --ebk-shadow-lg: 0 0 0 1px rgba(51, 255, 102, 0.45), 0 0 30px rgba(51, 255, 102, 0.18);
+    --ebk-focus-ring: 0 0 0 2px rgba(51, 255, 102, 0.6);
+
+    text-shadow: 0 0 3px rgba(51, 255, 102, 0.45);
+    caret-color: rgb(var(--v-theme-primary));
+
+    ::selection {
+        background: rgb(var(--v-theme-primary));
+        color: rgb(var(--v-theme-on-primary));
+        text-shadow: none;
+    }
+
+    // scanlines over everything, never blocking clicks
+    .layout-wrapper::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        pointer-events: none;
+        background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0, rgba(0, 0, 0, 0.18) 1px, transparent 1px, transparent 3px);
+    }
+
+    .layout-wrapper.layout-nav-type-vertical {
+        background: radial-gradient(ellipse at center, rgba(51, 255, 102, 0.05), transparent 70%), rgb(var(--v-theme-background));
+    }
+
+    .layout-navbar,
+    .layout-vertical-nav {
+        background: rgb(var(--v-theme-background));
+        backdrop-filter: none;
+        border-color: rgba(51, 255, 102, 0.35);
+    }
+
+    .v-card,
+    .v-expansion-panels .v-expansion-panel,
+    .v-menu > .v-overlay__content {
+        border: 1px solid rgba(51, 255, 102, 0.35);
+        border-radius: 0 !important;
+    }
+
+    .v-card-title::before {
+        content: '> ';
+        opacity: 0.7;
+    }
+
+    .v-btn {
+        border-radius: 0 !important;
+        text-transform: uppercase;
+
+        &.v-btn--variant-flat,
+        &.v-btn--variant-elevated {
+            text-shadow: none;
+            box-shadow: 0 0 10px rgba(51, 255, 102, 0.35);
+        }
+    }
+
+    .v-field {
+        border-radius: 0 !important;
+    }
+
+    .v-table {
+        th {
+            border-bottom: 1px dashed rgba(51, 255, 102, 0.5) !important;
+            text-transform: uppercase;
+        }
+
+        td {
+            border-bottom: 1px dashed rgba(51, 255, 102, 0.15) !important;
+        }
+    }
+}
+
+// ---------------------------------------------------------------
+// Aurora glass: drifting gradient backdrop, translucent blurred panels, soft round shapes.
+// ---------------------------------------------------------------
+.v-theme--aurora {
+    --ebk-radius-sm: 0.75rem;
+    --ebk-radius-md: 1.125rem;
+    --ebk-radius-lg: 1.5rem;
+    --ebk-radius-xl: 2rem;
+    --ebk-surface: 26, 24, 56;
+    --ebk-surface-muted: 34, 31, 69;
+    --ebk-surface-raised: 34, 31, 69;
+    --ebk-border: 255, 255, 255;
+    --ebk-shadow-color: 5, 4, 15;
+    --ebk-shadow-sm: 0 8px 32px rgba(5, 4, 15, 0.35);
+    --ebk-shadow-md: 0 12px 40px rgba(5, 4, 15, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    --ebk-shadow-lg: 0 24px 64px rgba(5, 4, 15, 0.55), 0 0 60px rgba(167, 139, 250, 0.12);
+    --ebk-focus-ring: 0 0 0 3px rgba(167, 139, 250, 0.35);
+
+    .layout-wrapper.layout-nav-type-vertical {
+        background:
+            radial-gradient(40rem 30rem at 10% 10%, rgba(167, 139, 250, 0.35), transparent 70%),
+            radial-gradient(36rem 28rem at 90% 20%, rgba(103, 232, 249, 0.22), transparent 70%),
+            radial-gradient(44rem 34rem at 60% 100%, rgba(244, 114, 182, 0.2), transparent 70%),
+            rgb(var(--v-theme-background));
+        background-attachment: fixed;
+    }
+
+    .layout-navbar,
+    .layout-vertical-nav,
+    .v-card,
+    .v-expansion-panels .v-expansion-panel,
+    .v-menu > .v-overlay__content,
+    .v-dialog > .v-overlay__content > .v-card {
+        background: rgba(var(--v-theme-surface), 0.55) !important;
+        backdrop-filter: blur(20px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .v-btn:not(.v-btn--icon) {
+        border-radius: 999px !important;
+    }
+
+    .v-btn.v-btn--variant-flat.bg-primary,
+    .v-btn.v-btn--variant-elevated.bg-primary {
+        background: linear-gradient(120deg, #a78bfa, #67e8f9) !important;
+        box-shadow: 0 6px 24px rgba(167, 139, 250, 0.4);
+    }
+
+    .v-field {
+        border-radius: var(--ebk-radius-sm) !important;
+    }
+
+    .v-chip {
+        backdrop-filter: blur(8px);
+    }
+
+    .v-table {
+        background: transparent !important;
+
+        th {
+            background: rgba(255, 255, 255, 0.04) !important;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .v-theme--brutalist .v-btn {
+        transition: none;
+    }
+}

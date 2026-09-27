@@ -40,7 +40,6 @@ import { useTheme } from 'vuetify';
 import { useI18n } from '@/locales/helpers.ts';
 import { type CommonDateRangeSelectionProps, useDateRangeSelectionBase } from '@/components/base/DateRangeSelectionBase.ts';
 
-import { ThemeType } from '@/core/theme.ts';
 
 interface DesktopDateRangeSelectionProps extends CommonDateRangeSelectionProps {
     persistent?: boolean;
@@ -65,7 +64,7 @@ const {
     getFinalDateRange
 } = useDateRangeSelectionBase(props);
 
-const isDarkMode = computed<boolean>(() => theme.global.name.value === ThemeType.Dark);
+const isDarkMode = computed<boolean>(() => theme.global.current.value.dark);
 const showState = computed<boolean>({
     get: () => props.show || false,
     set: (value) => emit('update:show', value)
