@@ -109,6 +109,19 @@
     row-gap: var(--ebk-space-3);
 }
 
+// on narrow screens the keyword filter takes a whole row instead of being squeezed by the toolbar buttons
+@media (max-width: 599.98px) {
+    .title-and-toolbar .transaction-keyword-filter {
+        flex: 1 0 100%;
+        order: 1;
+        margin-inline-start: 0 !important;
+
+        .v-input--density-compact {
+            inline-size: 100%;
+        }
+    }
+}
+
 .text-field-append-text {
     color: rgba(var(--v-theme-on-background), var(--v-medium-emphasis-opacity));
 }

@@ -19,7 +19,7 @@
         >
             <template #item="{ element, index }">
                 <v-card border class="card-title-with-bg my-4">
-                    <v-card-title class="d-flex align-center py-2 px-5">
+                    <v-card-title class="d-flex flex-wrap align-center py-2 px-5">
                         <v-icon :icon="mdiTextBoxSearchOutline" size="20" />
                         <span class="query-name text-body-large ms-2" v-if="editingQuery !== element">{{ element.name || tt('format.misc.queryIndex', { index: formatNumberToLocalizedNumeralsWithoutDigitGrouping(index + 1) }) }}</span>
                         <div class="query-name-edit ms-2" v-if="editingQuery === element">
