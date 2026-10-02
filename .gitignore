@@ -161,3 +161,4 @@ dist/
 
 # vercel
 /.vercel/
+.vercel
