@@ -98,6 +98,16 @@ export const ExportTransactionDataRequestSchema = schema(
     f.i64('MinTime', 'min_time', 'min=0'),
 );
 
+// budget.ts
+export const BudgetSaveItemRequestSchema = schema(
+    f.i64s('CategoryId', 'categoryId', 'min=0'),
+    f.i64('Amount', 'amount', 'required,min=1,max=999999999999999'),
+);
+
+export const BudgetSaveRequestSchema = schema(
+    f.arr('Budgets', 'budgets', objOf(BudgetSaveItemRequestSchema), 'max=1000'),
+);
+
 // exchange_rate.go
 export const UserCustomExchangeRateUpdateRequestSchema = schema(
     f.str('Currency', 'currency', 'required,len=3,validCurrency'),

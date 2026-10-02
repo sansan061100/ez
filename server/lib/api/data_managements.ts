@@ -5,6 +5,7 @@ import * as log from '../log/index';
 import { ACCOUNT_TYPE_MULTI_SUB_ACCOUNTS, type ClearAccountTransactionsRequest, type ClearDataRequest, type ExportTransactionDataRequest, type User } from '../models/index';
 import { Accounts } from '../services/accounts';
 import { nowUnix } from '../services/base';
+import { Budgets } from '../services/budgets';
 import { InsightsExplorers } from '../services/explorer';
 import { TransactionCategories } from '../services/transaction_categories';
 import { TransactionPictures } from '../services/transaction_pictures';
@@ -91,6 +92,7 @@ export async function clearAllDataHandler(c: WebContext): Promise<unknown> {
     await callOrFail(c, () => UserCustomIcons.deleteAllCustomIcons(c, uid), () => `[${P}.${handler}] failed to delete all user custom icons`);
     await callOrFail(c, () => UserCustomExchangeRates.deleteAllCustomExchangeRates(c, uid), () => `[${P}.${handler}] failed to delete all user custom exchange rates`);
     await callOrFail(c, () => InsightsExplorers.deleteAllExplorations(c, uid), () => `[${P}.${handler}] failed to delete all explorations`);
+    await callOrFail(c, () => Budgets.deleteAllBudgets(c, uid), () => `[${P}.${handler}] failed to delete all budgets`);
 
     log.infof(c, `[${P}.${handler}] user "uid:${uid}" has cleared all data`);
     return true;

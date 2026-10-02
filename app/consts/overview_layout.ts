@@ -393,6 +393,24 @@ export const DESKTOP_OVERVIEW_WIDGET_DEFINITIONS: PartialRecord<OverviewWidgetTy
             OverviewWidgetDataRequirement.TransactionCategoryStatistics
         ]
     },
+    [OverviewWidgetType.MonthlyBudget]: {
+        type: OverviewWidgetType.MonthlyBudget,
+        name: 'Monthly Budget',
+        supportsSettings: [
+            WIDGET_TITLE_SETTING
+        ],
+        defaultSettings: {},
+        defaultWidth: 3,
+        defaultHeight: 5,
+        minWidth: 2,
+        minHeight: 3,
+        dataRequirements: [
+            OverviewWidgetDataRequirement.Accounts,
+            OverviewWidgetDataRequirement.TransactionCategories,
+            OverviewWidgetDataRequirement.TransactionCategoryStatistics,
+            OverviewWidgetDataRequirement.Budgets
+        ]
+    },
     [OverviewWidgetType.RecentTransactions]: {
         type: OverviewWidgetType.RecentTransactions,
         name: 'Recent Transactions',

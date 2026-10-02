@@ -1,4 +1,5 @@
 export * from './account';
+export * from './budget';
 export * from './exchange_rate';
 export * from './explorer';
 export * from './imported_transaction';

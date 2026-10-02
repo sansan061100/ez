@@ -82,6 +82,18 @@ describe('desktop overview layout', () => {
         expect(getOverviewTransactionCategoryStatisticDateTypes(layout)).toEqual([DateRange.ThisMonth.type, DateRange.ThisYear.type]);
     });
 
+    test('loads this month category statistics for the monthly budget widget', () => {
+        const layout = normalizeDesktopOverviewLayout({
+            widgets: [
+                { id: 'year-ranking', type: OverviewWidgetType.ExpenseCategoryRanking, x: 0, y: 0, w: 3, h: 4, settings: { dateRange: DateRange.ThisYear.type } },
+                { id: 'budget', type: OverviewWidgetType.MonthlyBudget, x: 3, y: 0, w: 3, h: 4, settings: {} }
+            ]
+        });
+
+        expect(layout.widgets.map(widget => widget.type)).toEqual([OverviewWidgetType.ExpenseCategoryRanking, OverviewWidgetType.MonthlyBudget]);
+        expect(getOverviewTransactionCategoryStatisticDateTypes(layout)).toEqual([DateRange.ThisYear.type, DateRange.ThisMonth.type]);
+    });
+
     test('pushes colliding widget down and compacts it back up', () => {
         const widgets = [
             { id: 'active', type: OverviewWidgetType.CurrentMonthOverview, x: 0, y: 0, w: 4, h: 3, settings: {} },

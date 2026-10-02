@@ -10,6 +10,7 @@ import { useTransactionTemplatesStore } from './transactionTemplate.ts';
 import { useTransactionsStore } from './transaction.ts';
 import { useOverviewStore } from './overview.ts';
 import { useStatisticsStore } from './statistics.ts';
+import { useBudgetsStore } from './budget.ts';
 import { useExplorersStore } from './explorer.ts';
 import { useUserCustomIconsStore } from './userCustomIcon.ts';
 import { useExchangeRatesStore } from './exchangeRates.ts';
@@ -55,6 +56,7 @@ export const useRootStore = defineStore('root', () => {
     const explorersStore = useExplorersStore();
     const exchangeRatesStore = useExchangeRatesStore();
     const userCustomIconsStore = useUserCustomIconsStore();
+    const budgetsStore = useBudgetsStore();
 
     const currentNotification = ref<string | null>(null);
 
@@ -66,6 +68,7 @@ export const useRootStore = defineStore('root', () => {
         setNotificationContent(null);
 
         userCustomIconsStore.resetCustomIcons();
+        budgetsStore.resetBudgets();
         explorersStore.resetTransactionExplorers();
         statisticsStore.resetTransactionStatistics();
         overviewStore.resetTransactionOverview();

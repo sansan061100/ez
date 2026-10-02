@@ -57,6 +57,10 @@ import type {
     LatestExchangeRateResponse
 } from '@/models/exchange_rate.ts';
 import type {
+    BudgetInfoResponse,
+    BudgetSaveRequest
+} from '@/models/budget.ts';
+import type {
     ForgetPasswordRequest
 } from '@/models/forget_password.ts';
 import type {
@@ -913,6 +917,12 @@ export default {
             ignoreError: !!param.ignoreError,
             timeout: getExchangeRatesRequestTimeout() || DEFAULT_API_TIMEOUT
         } as ApiRequestConfig);
+    },
+    getAllBudgets: (): ApiResponsePromise<BudgetInfoResponse[]> => {
+        return axios.get<ApiResponse<BudgetInfoResponse[]>>('v1/budgets/list.json');
+    },
+    saveBudgets: (req: BudgetSaveRequest): ApiResponsePromise<BudgetInfoResponse[]> => {
+        return axios.post<ApiResponse<BudgetInfoResponse[]>>('v1/budgets/save.json', req);
     },
     updateUserCustomExchangeRate: (req: UserCustomExchangeRateUpdateRequest): ApiResponsePromise<UserCustomExchangeRateUpdateResponse> => {
         return axios.post<ApiResponse<UserCustomExchangeRateUpdateResponse>>('v1/exchange_rates/user_custom/update.json', req);

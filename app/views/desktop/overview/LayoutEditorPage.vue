@@ -65,6 +65,7 @@ import { useSettingsStore } from '@/stores/setting.ts';
 import { useAccountsStore } from '@/stores/account.ts';
 import { useTransactionCategoriesStore } from '@/stores/transactionCategory.ts';
 import { useOverviewStore } from '@/stores/overview.ts';
+import { useBudgetsStore } from '@/stores/budget.ts';
 
 import { itemAndIndex } from '@/core/base.ts';
 import {
@@ -125,6 +126,7 @@ const settingsStore = useSettingsStore();
 const accountsStore = useAccountsStore();
 const transactionCategoriesStore = useTransactionCategoriesStore();
 const overviewStore = useOverviewStore();
+const budgetsStore = useBudgetsStore();
 
 const layoutJsonPlaceholder: string = `{
     "widgets": [
@@ -191,6 +193,10 @@ function reload(force: boolean): void {
                 dateType: dateType
             }));
         }
+    }
+
+    if (requirements.includes(OverviewWidgetDataRequirement.Budgets)) {
+        promises.push(budgetsStore.loadAllBudgets());
     }
 
     if (requirements.includes(OverviewWidgetDataRequirement.AssetTrends)) {

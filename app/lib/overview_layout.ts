@@ -1,4 +1,5 @@
 import { type PartialRecord, entries, keys } from '@/core/base.ts';
+import { DateRange } from '@/core/datetime.ts';
 import {
     type OverviewWidgetSettingValue,
     type OverviewWidgetSettingItem,
@@ -235,11 +236,12 @@ export function getOverviewTransactionCategoryStatisticDateTypes(layout: Overvie
     const existingDateTypes: Record<number, boolean> = {};
 
     for (const widget of layout.widgets) {
-        if (widget.type !== OverviewWidgetType.ExpenseCategoryRanking) {
+        if (widget.type !== OverviewWidgetType.ExpenseCategoryRanking && widget.type !== OverviewWidgetType.MonthlyBudget) {
             continue;
         }
 
-        const dateType = widget.settings['dateRange'];
+        // the monthly budget widget always compares the budgets with the expenses of this month
+        const dateType = widget.type === OverviewWidgetType.MonthlyBudget ? DateRange.ThisMonth.type : widget.settings['dateRange'];
 
         if (isNumber(dateType) && !existingDateTypes[dateType]) {
             dateTypes.push(dateType);

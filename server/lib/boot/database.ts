@@ -3,6 +3,7 @@ import { Container as DataStoreContainer } from '../datastore/index';
 import * as log from '../log/index';
 import {
     AccountTable,
+    BudgetTable,
     InsightsExplorerTable,
     TokenRecordTable,
     TransactionCategoryTable,
@@ -41,6 +42,7 @@ export async function updateAllDatabaseTablesStructure(c: Context): Promise<void
         [DataStoreContainer.userDataStore, UserApplicationCloudSettingTable, 'user application cloud settings table'],
         [DataStoreContainer.userDataStore, UserExternalAuthTable, 'user external auth table'],
         [DataStoreContainer.userDataStore, InsightsExplorerTable, 'insights explorer table'],
+        [DataStoreContainer.userDataStore, BudgetTable, 'budget table'],
     ];
 
     for (const [store, table, name] of steps) {

@@ -18,6 +18,7 @@ import { useSettingsStore } from '@/stores/setting.ts';
 import { useAccountsStore } from '@/stores/account.ts';
 import { useTransactionCategoriesStore } from '@/stores/transactionCategory.ts';
 import { useOverviewStore } from '@/stores/overview.ts';
+import { useBudgetsStore } from '@/stores/budget.ts';
 
 import { type DesktopOverviewLayout, OverviewWidgetDataRequirement } from '@/core/overview_layout.ts';
 import { DESKTOP_OVERVIEW_WIDGET_DEFINITIONS, DEFAULT_DESKTOP_OVERVIEW_LAYOUT } from '@/consts/overview_layout.ts';
@@ -41,6 +42,7 @@ const settingsStore = useSettingsStore();
 const accountsStore = useAccountsStore();
 const transactionCategoriesStore = useTransactionCategoriesStore();
 const overviewStore = useOverviewStore();
+const budgetsStore = useBudgetsStore();
 
 const snackbar = useTemplateRef<SnackBarType>('snackbar');
 
@@ -86,6 +88,10 @@ function reload(force: boolean): void {
                 dateType: dateType
             }));
         }
+    }
+
+    if (requirements.includes(OverviewWidgetDataRequirement.Budgets)) {
+        promises.push(budgetsStore.loadAllBudgets());
     }
 
     if (requirements.includes(OverviewWidgetDataRequirement.AssetTrends)) {
