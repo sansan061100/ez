@@ -63,7 +63,14 @@ const expenseCategories = computed<TransactionCategory[]>(() => (transactionCate
     .filter(category => !category.hidden || !!budgetsStore.allBudgets[category.id]));
 
 function open(): void {
-    amounts.value = { [ALL_EXPENSES_BUDGET_CATEGORY_ID]: 0, ...budgetsStore.allBudgets };
+    // every input needs a number, the amount input cannot be rendered with an undefined value
+    const values: Record<string, number> = { [ALL_EXPENSES_BUDGET_CATEGORY_ID]: 0 };
+
+    for (const category of expenseCategories.value) {
+        values[category.id] = 0;
+    }
+
+    amounts.value = { ...values, ...budgetsStore.allBudgets };
     showState.value = true;
 }
 
