@@ -1,4 +1,4 @@
-import { crc32, deflateSync } from 'node:zlib';
+import { crc32 } from 'node:zlib';
 
 const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
@@ -68,39 +68,4 @@ export function decodeImageConfig(data: Buffer): [ImageConfig, string] {
     }
 
     return [{ width, height }, 'png'];
-}
-
-function pngChunk(type: string, data: Buffer): Buffer {
-    const length = Buffer.alloc(4);
-    length.writeUInt32BE(data.length);
-    const typeAndData = Buffer.concat([Buffer.from(type, 'latin1'), data]);
-    const crc = Buffer.alloc(4);
-    crc.writeUInt32BE(crc32(typeAndData));
-    return Buffer.concat([length, typeAndData, crc]);
-}
-
-// encodeGrayPng encodes the 8-bit grayscale pixels to png image
-export function encodeGrayPng(width: number, height: number, pixels: Uint8Array): Buffer {
-    const ihdr = Buffer.alloc(13);
-    ihdr.writeUInt32BE(width, 0);
-    ihdr.writeUInt32BE(height, 4);
-    ihdr[8] = 8; // bit depth
-    ihdr[9] = 0; // color type: grayscale
-    ihdr[10] = 0;
-    ihdr[11] = 0;
-    ihdr[12] = 0;
-
-    const raw = Buffer.alloc((width + 1) * height);
-
-    for (let y = 0; y < height; y++) {
-        raw[y * (width + 1)] = 0;
-        raw.set(pixels.subarray(y * width, (y + 1) * width), y * (width + 1) + 1);
-    }
-
-    return Buffer.concat([
-        PNG_SIGNATURE,
-        pngChunk('IHDR', ihdr),
-        pngChunk('IDAT', deflateSync(raw)),
-        pngChunk('IEND', Buffer.alloc(0)),
-    ]);
 }

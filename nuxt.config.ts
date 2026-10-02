@@ -61,13 +61,6 @@ function getAppleTouchStartupImageLinks(): { rel: 'apple-touch-startup-image', m
     return links;
 }
 
-const framework7Components = [
-    'accordion', 'actions', 'card', 'checkbox', 'chip', 'color-picker', 'dialog', 'fab', 'form', 'grid', 'infinite-scroll',
-    'input', 'login-screen', 'notification', 'photo-browser', 'picker', 'popover', 'popup', 'preloader', 'progressbar',
-    'pull-to-refresh', 'radio', 'range', 'searchbar', 'sheet', 'skeleton', 'sortable', 'swipeout', 'swiper', 'toast',
-    'toggle', 'tooltip', 'treeview', 'typography', 'virtual-list'
-];
-
 const vuetifyComponents = [
     'VAlert', 'VApp', 'VAutocomplete', 'VAvatar', 'VBadge', 'VBtn', 'VBtnGroup', 'VBtnToggle', 'VCard', 'VCheckbox', 'VChip',
     'VColorPicker', 'VDataTable', 'VDialog', 'VDivider', 'VExpansionPanel', 'VForm', 'VGrid', 'VIcon', 'VImg', 'VInput',
@@ -88,10 +81,6 @@ const optimizedDependencies = [
     'echarts/components',
     'echarts/core',
     'echarts/renderers',
-    'framework7/lite',
-    ...framework7Components.map(name => `framework7/components/${name}`),
-    'framework7-vue',
-    'framework7-vue/bundle',
     'jalaali-js',
     'leaflet/dist/leaflet-src.esm.js',
     'moment/moment',
@@ -118,6 +107,11 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         '@vite-pwa/nuxt'
     ],
+    // the mobile version has been removed, so the old mobile urls go to the desktop version
+    routeRules: {
+        '/mobile': { redirect: '/desktop/' },
+        '/mobile/**': { redirect: '/desktop/' }
+    },
     // the components and composables of the application are imported explicitly
     components: {
         dirs: []

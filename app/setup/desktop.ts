@@ -136,7 +136,6 @@ import MonthRangeSelectionDialog from '@/components/desktop/MonthRangeSelectionD
 import MonthlyIncomeAndExpenseChart from '@/components/desktop/MonthlyIncomeAndExpenseChart.vue';
 import AccountBalanceTrendsChart from '@/components/desktop/AccountBalanceTrendsChart.vue';
 import AccountAndCategorySankeyChart from '@/components/desktop/AccountAndCategorySankeyChart.vue';
-import SwitchToMobileDialog from '@/components/desktop/SwitchToMobileDialog.vue';
 
 import TextFieldAutoWidth from '@/directives/desktop/textfieldAutoWidth.ts';
 
@@ -730,7 +729,6 @@ export function setupDesktopApp(app: App, i18n: I18n<Record<string, unknown>, Re
     app.component('MonthlyIncomeAndExpenseChart', MonthlyIncomeAndExpenseChart);
     app.component('AccountBalanceTrendsChart', AccountBalanceTrendsChart);
     app.component('AccountAndCategorySankeyChart', AccountAndCategorySankeyChart);
-    app.component('SwitchToMobileDialog', SwitchToMobileDialog);
 
     app.directive('TextFieldAutoWidth', TextFieldAutoWidth);
 }

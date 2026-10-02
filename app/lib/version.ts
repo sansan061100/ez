@@ -46,10 +46,6 @@ export function getClientBuildTime(): string {
     return clientVersionHolder.buildTime || '';
 }
 
-export function getMobileVersionPath(): string {
-    return getUiModeBasePath('mobile');
-}
-
 export function getDesktopVersionPath(): string {
     return getUiModeBasePath('desktop') + '/';
 }

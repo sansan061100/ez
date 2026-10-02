@@ -4,11 +4,9 @@ import { createWebHistory } from 'vue-router';
 
 import { getUiMode, getUiModeBasePath } from '@/lib/web.ts';
 
-// The desktop version and the mobile version are two separate applications in one nuxt application,
-// the pages of each version are in "pages/desktop" and "pages/mobile", and the routes of current version are mounted
-// at the base path of the version (e.g. "pages/desktop/transaction/list.vue" is "/transaction/list" in the router whose base
-// path is "/desktop"), so the pages and the components of each version can use the route paths relative to the version.
-// Switching between the versions always reloads the whole page, so the version is decided when the application starts.
+// The pages of the application are in "pages/desktop", and the routes are mounted at the base path "/desktop"
+// (e.g. "pages/desktop/transaction/list.vue" is "/transaction/list" in the router whose base path is "/desktop"),
+// so the pages and the components can use the route paths relative to it.
 
 function removeRoutePathPrefix(routes: readonly RouteRecordRaw[], prefix: string): RouteRecordRaw[] {
     const result: RouteRecordRaw[] = [
@@ -52,11 +50,8 @@ export default {
 
         if (uiMode === 'desktop') {
             return removeRoutePathPrefix(routes, '/desktop');
-        } else if (uiMode === 'mobile') {
-            return removeRoutePathPrefix(routes, '/mobile');
         } else {
-            return routes.filter(route => route.path !== '/desktop' && !route.path.startsWith('/desktop/')
-                && route.path !== '/mobile' && !route.path.startsWith('/mobile/'));
+            return routes.filter(route => route.path !== '/desktop' && !route.path.startsWith('/desktop/'));
         }
     },
     history: () => {
@@ -71,8 +66,6 @@ export default {
             }
 
             return createWebHistory(basePath);
-        } else if (uiMode === 'mobile') {
-            return createWebHistory(getUiModeBasePath('mobile'));
         } else {
             return undefined;
         }

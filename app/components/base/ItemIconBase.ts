@@ -10,10 +10,9 @@ import services from '@/lib/services.ts';
 
 type IconItemStyleName = string;
 type IconItemStyleValue = ColorValue | string | number | undefined;
-type MobileIconItemType = 'fixed-f7';
 
 export interface CommonIconProps {
-    iconType: CommonIconItemType | MobileIconItemType;
+    iconType: CommonIconItemType;
     iconId: string | number;
     color?: ColorValue;
     defaultColor?: ColorStyleValue;

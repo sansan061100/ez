@@ -112,12 +112,6 @@
                         </div>
                         <v-spacer />
                         <v-btn class="ms-2" color="primary" variant="text" density="comfortable"
-                               :aria-label="tt('Use on Mobile Device')" :icon="true"
-                               @click="showMobileQrCode = true">
-                            <v-icon :icon="mdiCellphone" size="24" />
-                            <v-tooltip activator="parent">{{ tt('Use on Mobile Device') }}</v-tooltip>
-                        </v-btn>
-                        <v-btn class="ms-2" color="primary" variant="text" density="comfortable"
                                :aria-label="tt('Theme')" :icon="true">
                             <v-icon :icon="(currentTheme === 'light' ? mdiWeatherSunny : (currentTheme === 'dark' ? mdiWeatherNight : mdiThemeLightDark))" size="24" />
                             <v-tooltip activator="parent">{{ tt('Theme') }}</v-tooltip>
@@ -189,7 +183,6 @@
             <v-progress-circular indeterminate></v-progress-circular>
         </v-overlay>
 
-        <switch-to-mobile-dialog v-model:show="showMobileQrCode" />
         <about-dialog v-model:show="showAboutDialog" />
 
         <snack-bar ref="snackbar" />
@@ -233,7 +226,6 @@ import {
     mdiCompass,
     mdiCompassOutline,
     mdiPlus,
-    mdiCellphone,
     mdiThemeLightDark,
     mdiWeatherSunny,
     mdiWeatherNight,
@@ -269,7 +261,6 @@ const snackbar = useTemplateRef<SnackBarType>('snackbar');
 const logouting = ref<boolean>(false);
 const showVerticalOverlayMenu = ref<boolean>(false);
 const showLoading = ref<boolean>(false);
-const showMobileQrCode = ref<boolean>(false);
 const showAboutDialog = ref<boolean>(false);
 
 const currentNickName = computed<string>(() => userStore.currentUserNickname || tt('User'));

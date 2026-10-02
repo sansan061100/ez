@@ -223,7 +223,7 @@ registerRoute(
 );
 
 registerRoute(
-    ({ request, url }) => request.mode === 'navigate' && /\/(mobile|desktop)(\/.*)?$/.test(url.pathname),
+    ({ request, url }) => request.mode === 'navigate' && /\/desktop(\/.*)?$/.test(url.pathname),
     new NetworkFirst({
         cacheName: SW_CODE_CACHE_NAME,
     })

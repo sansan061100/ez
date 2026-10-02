@@ -17,7 +17,6 @@ import {
 
 import {
     BASE_API_URL_PATH,
-    BASE_QRCODE_PATH,
     BASE_PROXY_URL_PATH,
     BASE_AMAP_API_PROXY_URL_PATH,
     DEFAULT_API_TIMEOUT,
@@ -932,9 +931,6 @@ export default {
     },
     generateOAuth2LinkUrl: (platform: 'mobile' | 'desktop', clientSessionId: string): string => {
         return `${getBasePath()}/oauth2/login?platform=${platform}&client_session_id=${clientSessionId}&token=${getCurrentToken()}`;
-    },
-    generateQrCodeUrl: (qrCodeName: string): string => {
-        return `${getBasePath()}${BASE_QRCODE_PATH}/${qrCodeName}.png`;
     },
     getMapProxyTileImageAndAnnotationImageUrlPatterns(): string[] {
         return [

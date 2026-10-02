@@ -4,7 +4,7 @@ import * as middlewares from './middlewares';
 
 // The middlewares of the route groups (same as the gin router groups of the original program)
 
-// requestIdGroup is the group of the routes which only generate request id (e.g. /qrcode)
+// requestIdGroup is the group of the routes which only generate request id
 export function requestIdGroup(config: Config): WebMiddlewareFunc[] {
     return [middlewares.requestId(config)];
 }

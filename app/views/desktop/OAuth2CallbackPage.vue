@@ -175,10 +175,8 @@ const inputProblemMessage = computed<string | null>(() => {
 });
 
 function navigateToHome(): void {
-    if (props.platform === 'desktop') {
+    if (props.platform === 'desktop' || props.platform === 'mobile') {
         navigateToHomePage('desktop');
-    } else if (props.platform === 'mobile') {
-        navigateToHomePage('mobile');
     } else {
         router.replace('/');
     }
