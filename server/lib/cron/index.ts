@@ -139,6 +139,25 @@ export const CreateScheduledTransactionJob = new CronJob(
     c => Transactions.createScheduledTransactions(c, Math.floor(Date.now() / 1000), c.getInterval()),
 );
 
+// scheduledTransactionCatchUpSeconds is how far back the external scheduler re-checks the scheduled transaction windows,
+// it is longer than one day because Vercel Cron runs at most once a day (at any time in the hour) on the Hobby plan
+const scheduledTransactionCatchUpSeconds = 26 * 60 * 60;
+
+// CatchUpScheduledTransactionJob creates the transactions of all the windows in the catch-up period,
+// the transactions which have been created are skipped by createScheduledTransactions
+export const CatchUpScheduledTransactionJob = new CronJob(
+    'CatchUpScheduledTransaction',
+    'Create the transactions of the scheduled transaction templates in the past 26 hours which have not been created.',
+    new CronJobEvery15MinutesPeriod(0),
+    async c => {
+        const now = Math.floor(Date.now() / 1000);
+
+        for (let t = now - scheduledTransactionCatchUpSeconds; t <= now; t += c.getInterval()) {
+            await Transactions.createScheduledTransactions(c, t, c.getInterval());
+        }
+    },
+);
+
 // CronJobSchedulerContainer contains the current cron job scheduler
 export class CronJobSchedulerContainer {
     private readonly allJobs: CronJob[] = [];
@@ -164,6 +183,14 @@ export class CronJobSchedulerContainer {
         }
 
         await job.doRun();
+    }
+
+    // runAllJobsByExternalScheduler runs all the enabled cron jobs once, it is used when the server does not keep running
+    // between requests (e.g. Vercel), the scheduled transactions job catches up all the missed windows instead
+    public async runAllJobsByExternalScheduler(): Promise<void> {
+        for (const job of this.allJobs) {
+            await (job === CreateScheduledTransactionJob ? CatchUpScheduledTransactionJob : job).doRun();
+        }
     }
 
     public registerAllJobs(ctx: Context, config: Config): void {

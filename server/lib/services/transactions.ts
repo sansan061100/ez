@@ -912,6 +912,20 @@ export class TransactionService extends ServiceBase {
                 transaction.relatedAccountAmount = template.relatedAccountAmount;
             }
 
+            // the same window may be processed more than once (e.g. an external scheduler catching up the missed windows),
+            // so skips the template whose transaction has been created in this window (including the deleted one)
+            // ponytail: matched by account, category and time (not by template id, which transactions do not store),
+            // two templates of the same account and category scheduled at the same minute are treated as one
+            const createdCount = await this.userDataDB(template.uid).newSession(c).where('uid=? AND scheduled_created=? AND type=? AND account_id=? AND category_id=? AND transaction_time>=? AND transaction_time<=?',
+                template.uid, true, transactionDbType, template.accountId, template.categoryId,
+                getMinTransactionTimeFromUnixTime(Math.floor(transactionTime.toSeconds())), getMaxTransactionTimeFromUnixTime(Math.floor(transactionTime.toSeconds()))).count(TransactionTable);
+
+            if (createdCount > 0) {
+                skipCount++;
+                log.infof(c, `[transactions.CreateScheduledTransactions] transaction template "id:${template.templateId}" does not need to create transaction, it has been created`);
+                continue;
+            }
+
             const tagIds = getTemplateTagIds(template);
 
             try {

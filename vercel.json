@@ -1,3 +1,9 @@
 {
-    "framework": "nuxtjs"
+    "framework": "nuxtjs",
+    "crons": [
+        {
+            "path": "/cron/run",
+            "schedule": "0 0 * * *"
+        }
+    ]
 }
